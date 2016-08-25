@@ -1,3 +1,5 @@
+! Ths package is still in active developement. Use at your own risks !
+
 # Laravel Env Sync
 
 Keep your .env in sync with your .env.example. It reads the .env.example file and propose you to fill your .env accordingly
