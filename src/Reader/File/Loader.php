@@ -1,9 +1,15 @@
 <?php
-namespace Jtant\LaravelEnvSync;
+/**
+ * Laravel-Env-Sync
+ *
+ * @author Julien Tant - Craftyx <julien@craftyx.fr>
+ */
 
-use Dotenv\Loader;
+namespace Jtant\LaravelEnvSync\Reader\File;
 
-class EnvFileReader extends Loader
+use Dotenv\Loader as OriginalLoader;
+
+class Loader extends OriginalLoader
 {
     /**
      * Load `.env` file in given directory.

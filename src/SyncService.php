@@ -1,59 +1,46 @@
 <?php
+/**
+ * Laravel-Env-Sync
+ *
+ * @author Julien Tant - Craftyx <julien@craftyx.fr>
+ */
+
 namespace Jtant\LaravelEnvSync;
 
-use File;
-use Symfony\Component\Console\Output\OutputInterface;
+use Jtant\LaravelEnvSync\Reader\ReaderInterface;
 
 class SyncService
 {
+    /**
+     * @var ReaderInterface
+     */
+    private $reader;
 
-    public function sync(OutputInterface $io, $source, $destination)
+    public function __construct(ReaderInterface $reader)
     {
-        try {
-            self::guard($source, $destination);
-        } catch (FileNotFound $exception) {
-            $io->writeln($exception->getMessage());
-        }
-
-        $destinationValues = self::loadEnvFile($destination);
-        $sourceValues = self::loadEnvFile($source);
-
-        $destinationContent = [];
-        foreach ($sourceValues as $key => $value) {
-            if (array_key_exists($key, $destinationValues)) {
-                $destinationContent[] = $this->assemble($key, $value);
-                continue;
-            }
-
-            $newValue = $io->ask(sprintf("'%s' is not present into your %s file. Please enter a value :", $key, basename($destination)), $value);
-
-            $destinationContent[] = $this->assemble($key, $newValue);
-        }
-        file_put_contents($destination, implode(PHP_EOL, $destinationContent));
-
-        $io->writeln(sprintf("<info>The %s file is now synced</info>", basename($destination)));
+        $this->reader = $reader;
     }
 
-    private function guard(...$files)
+    public function getDiff($source, $destination)
+    {
+        $this->ensureFileExists($source, $destination);
+
+        $destinationValues = $this->reader->read($destination);
+        $sourceValues = $this->reader->read($source);
+
+        $diffKeys = array_diff(array_keys($sourceValues), array_keys($destinationValues));
+
+        return array_filter($sourceValues, function ($key) use ($diffKeys) {
+            return in_array($key, $diffKeys);
+        }, ARRAY_FILTER_USE_KEY);
+    }
+
+    private function ensureFileExists(...$files)
     {
         foreach ($files as $file) {
-            if (!File::exists($file)) {
+            if (!file_exists($file)) {
                 throw new FileNotFound(sprintf("%s must exists", $file));
             }
         }
-    }
-
-    /**
-     * @return array
-     */
-    private function loadEnvFile($path)
-    {
-        $dotEnv = new EnvFileReader($path);
-        return $dotEnv->load();
-    }
-
-    private function assemble($key, $value)
-    {
-        return sprintf("%s=%s", $key, $value);
     }
 }

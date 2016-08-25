@@ -7,11 +7,19 @@
       "Jtant\\LaravelEnvSync\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Jtant\\LaravelEnvSync\\Tests\\": "tests/"
+    }
+  },
   "require": {
-    "vlucas/phpdotenv": "^2.2"
+    "vlucas/phpdotenv": "^2.2",
+    "laravel/framework": "^5.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^5.4"
+    "phpunit/phpunit": "^5.4",
+    "mikey179/vfsStream": "^1.6",
+    "mockery/mockery": "^0.9.5"
   },
   "license": "MIT",
   "authors": [
