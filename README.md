@@ -18,8 +18,18 @@ Then add the `\Jtant\LaravelEnvSync\EnvSyncServiceProvider::class` service provi
 
 ## Usage
 
-You can use this package by running the `php artisan env:sync` command.
+### Sync your envs files
+
+You can sync your fill your .env file from the .env.example by using the `php artisan env:sync` command.
 
 The command will tell you if there's anything not in sync between your files and will propose you to add values into the .env file.
 
 You can launch the commande with the option `--reverse` to fill the .env.example file from the .env file
+
+### Check for diff in your envs files
+
+You can check if your .env is missing some variables from your .env.example by using the `php artisan env:check` command.
+
+The command simply show you which keys are not present in your .env file. This command will return 0 if your files are in sync, and 1 if they are not, so you can use this in a script
+
+Again, you can launch the commande with the option `--reverse`
