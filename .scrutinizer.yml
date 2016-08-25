@@ -1,7 +1,7 @@
 checks:
     php: true
 filter:
-    excluded_paths: [vendor/*, tests/*]
+    excluded_paths: [vendor/*, tests/*, src/Console/*, src/EnvSyncServiceProvider.php]
 coding_style:
     php: {  }
 tools:
