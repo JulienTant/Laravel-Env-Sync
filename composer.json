@@ -1,0 +1,24 @@
+{
+  "name": "jtant/laravel-env-sync",
+  "description": "A package that makes sure that your .env file is in sync with your .env.example",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Jtant\\LaravelEnvSync\\": "src/"
+    }
+  },
+  "require": {
+    "vlucas/phpdotenv": "^2.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.4"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Julien Tant",
+      "email": "julien@craftyx.fr"
+    }
+  ],
+  "minimum-stability": "stable"
+}
