@@ -12,14 +12,14 @@ class SyncCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'env:sync';
+    protected $signature = 'env:sync {--reverse}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Synchronise the .env & .env.example files';
     /**
      * @var SyncService
      */
@@ -45,6 +45,16 @@ class SyncCommand extends Command
     {
         $io = $this->getOutput();
 
-        $this->sync->sync($io, base_path('.env.example'), base_path('.env'));
+        $source = base_path('.env.example');
+        $destination = base_path('.env');
+
+        if ($this->option('reverse')) {
+            $switch = $source;
+            $source = $destination;
+            $destination = $switch;
+            unset($switch);
+        }
+
+        $this->sync->sync($io, $source, $destination);
     }
 }

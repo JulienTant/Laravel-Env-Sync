@@ -7,31 +7,31 @@ use Symfony\Component\Console\Output\OutputInterface;
 class SyncService
 {
 
-    public function sync(OutputInterface $io, $source, $dest)
+    public function sync(OutputInterface $io, $source, $destination)
     {
         try {
-            self::guard($source, $dest);
+            self::guard($source, $destination);
         } catch (FileNotFound $exception) {
             $io->writeln($exception->getMessage());
         }
 
-        $destValues = self::loadEnvFile($dest);
+        $destinationValues = self::loadEnvFile($destination);
         $sourceValues = self::loadEnvFile($source);
 
-        $destContent = [];
+        $destinationContent = [];
         foreach ($sourceValues as $key => $value) {
-            if (array_key_exists($key, $destValues)) {
-                $destContent[] = $this->assemble($key, $value);
+            if (array_key_exists($key, $destinationValues)) {
+                $destinationContent[] = $this->assemble($key, $value);
                 continue;
             }
 
-            $newValue = $io->ask(sprintf("'%s' is not present into your .env file. Please enter a value :", $key), $value);
+            $newValue = $io->ask(sprintf("'%s' is not present into your %s file. Please enter a value :", $key, basename($destination)), $value);
 
-            $destContent[] = $this->assemble($key, $newValue);
+            $destinationContent[] = $this->assemble($key, $newValue);
         }
-        file_put_contents($dest, implode(PHP_EOL, $destContent));
+        file_put_contents($destination, implode(PHP_EOL, $destinationContent));
 
-        $io->writeln("<info>The .env file is now synced</info>");
+        $io->writeln(sprintf("<info>The %s file is now synced</info>", basename($destination)));
     }
 
     private function guard(...$files)
