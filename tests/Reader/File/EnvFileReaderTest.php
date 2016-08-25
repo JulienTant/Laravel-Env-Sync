@@ -9,6 +9,7 @@ namespace Jtant\LaravelEnvSync\Tests\Reader\File;
 
 
 use Jtant\LaravelEnvSync\Reader\File\EnvFileReader;
+use Jtant\LaravelEnvSync\Reader\File\FileRequired;
 use Jtant\LaravelEnvSync\Reader\ReaderInterface;
 use org\bovigo\vfs\vfsStream;
 use VirtualFileSystem\FileSystem;
@@ -55,4 +56,14 @@ TAG
             'TEST' => 'ZOO',
         ], $result);
     }
+
+    /** @test */
+    public function it_should_throw_exception_when_no_file_passed()
+    {
+        $this->expectException(FileRequired::class);
+
+        // Act
+        $this->reader->read();
+    }
+
 }
