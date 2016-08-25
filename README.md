@@ -1,4 +1,4 @@
-! Ths package is still in active developement. Use at your own risks !
+**Ths package is still in active developement. Use it at your own risks !**
 
 # Laravel Env Sync
 
