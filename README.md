@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/JulienTant/Laravel-Env-Sync.svg?branch=master)](https://travis-ci.org/JulienTant/Laravel-Env-Sync)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/JulienTant/Laravel-Env-Sync/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/JulienTant/Laravel-Env-Sync/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/JulienTant/Laravel-Env-Sync/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/JulienTant/Laravel-Env-Sync/?branch=master)
+
 # Laravel Env Sync
 
 Keep your .env in sync with your .env.example. It reads the .env.example file and propose you to fill your .env accordingly
