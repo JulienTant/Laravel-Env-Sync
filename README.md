@@ -19,8 +19,3 @@ You can use this package by running the `php artisan env:sync` command.
 The command will tell you if there's anything not in sync between your files and will propose you to add values into the .env file.
 
 You can launch the commande with the option `--reverse` to fill the .env.example file from the .env file
-
-## Future
-
-- [ ] Add some tests
-- [ ] Do some refactoring to decouple the package from artisan.
