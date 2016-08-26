@@ -70,16 +70,25 @@ class SyncCommand extends Command
             unset($switch);
         }
 
+        $forceCopy = $this->option('no-interaction');
+        if ($forceCopy) {
+            $this->warn('--no-interaction flag detected - will copy all new keys');
+        }
+
+
         $diffs = $this->sync->getDiff($first, $second);
 
         foreach ($diffs as $key => $diff) {
-            $question = sprintf("'%s' is not present into your %s file. Its default value is '%s'. Would you like to add it ? [y=yes/n=no/c=change default value]", $key, basename($second), $diff);
-            $action = $this->choice($question, [
-                self::YES    => 'Copy the default value',
-                self::CHANGE => 'Change the default value',
-                self::NO     => 'Skip'
-            ], self::YES);
-            
+            $action = self::YES;
+            if (!$forceCopy) {
+                $question = sprintf("'%s' is not present into your %s file. Its default value is '%s'. Would you like to add it ? [y=yes/n=no/c=change default value]", $key, basename($second), $diff);
+                $action = $this->choice($question, [
+                    self::YES    => 'Copy the default value',
+                    self::CHANGE => 'Change the default value',
+                    self::NO     => 'Skip'
+                ], self::YES);
+            }
+
             if ($action == self::NO) {
                 continue;
             }
