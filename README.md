@@ -35,3 +35,9 @@ You can check if your .env is missing some variables from your .env.example by u
 The command simply show you which keys are not present in your .env file. This command will return 0 if your files are in sync, and 1 if they are not, so you can use this in a script
 
 Again, you can launch the command with the option `--reverse`
+
+### Show diff between your envs files
+
+You can show a table that compares the content of your env files by using the `php artisan env:diff` command.
+
+The command will print a table that compare the content of both .env and .env.example files, and will highlight the missing keys
