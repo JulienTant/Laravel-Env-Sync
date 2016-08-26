@@ -26,6 +26,8 @@ The command will tell you if there's anything not in sync between your files and
 
 You can launch the command with the option `--reverse` to fill the .env.example file from the .env file
 
+If you use the `--no-interaction` flag, the command will copy all new keys with their default values
+
 ### Check for diff in your envs files
 
 You can check if your .env is missing some variables from your .env.example by using the `php artisan env:check` command.
