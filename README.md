@@ -1,6 +1,6 @@
-[![Travis](https://img.shields.io/travis/JulienTant/Laravel-Env-Sync.svg?maxAge=2592000)](https://travis-ci.org/JulienTant/Laravel-Env-Sync)
-[![Scrutinizer](https://img.shields.io/scrutinizer/g/JulienTant/Laravel-Env-Sync.svg?maxAge=2592000)](https://scrutinizer-ci.com/g/JulienTant/Laravel-Env-Sync/?branch=master)
-[![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/JulienTant/Laravel-Env-Sync.svg?maxAge=2592000)](https://travis-ci.org/JulienTant/Laravel-Env-Sync)
+[![Travis](https://img.shields.io/travis/JulienTant/Laravel-Env-Sync.svg?maxAge=3600)](https://travis-ci.org/JulienTant/Laravel-Env-Sync)
+[![Scrutinizer](https://img.shields.io/scrutinizer/g/JulienTant/Laravel-Env-Sync.svg?maxAge=3600)](https://scrutinizer-ci.com/g/JulienTant/Laravel-Env-Sync/?branch=master)
+[![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/JulienTant/Laravel-Env-Sync.svg?maxAge=3600)](https://scrutinizer-ci.com/g/JulienTant/Laravel-Env-Sync/?branch=master)
 
 # Laravel Env Sync
 
