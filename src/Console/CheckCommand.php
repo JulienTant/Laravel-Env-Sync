@@ -63,7 +63,7 @@ class CheckCommand extends Command
 
         $diffs = $this->sync->getDiff($first, $second);
 
-        if (count(diffs) === 0) {
+        if (count($diffs) === 0) {
             $this->info(sprintf("Your %s file is already in sync with %s", basename($second), basename($first)));
             return 0;
         }
