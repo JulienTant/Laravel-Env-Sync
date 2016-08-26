@@ -60,4 +60,25 @@ class CheckCommandTest extends TestCase
         // Assert
         $this->assertSame(1, (int)$returnCode);
     }
+
+
+    /** @test */
+    public function it_should_work_in_reverse_mode()
+    {
+        // Arrange
+        $root = vfsStream::setup();
+        $env = "FOO=BAR\nBAR=BAZ\nBAZ=FOO";
+        $example = "FOO=BAR\nBAZ=FOO";
+
+        file_put_contents($root->url() . '/.env.example', $example);
+        file_put_contents($root->url() . '/.env', $env);
+
+        $this->app->setBasePath($root->url());
+
+        // Act
+        $returnCode = Artisan::call('env:check', ["--reverse" => true]);
+
+        // Assert
+        $this->assertSame(1, (int)$returnCode);
+    }
 }

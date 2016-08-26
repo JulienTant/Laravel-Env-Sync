@@ -42,4 +42,28 @@ class SyncCommandTest extends TestCase
         $expected = "FOO=BAR\nBAZ=FOO\nBAR=BAZ";
         $this->assertEquals($expected, file_get_contents($root->url() . '/.env'));
     }
+
+    /** @test */
+    public function it_should_work_in_reverse_mode()
+    {
+        // Arrange
+        $root = vfsStream::setup();
+        $env= "FOO=BAR\nBAR=BAZ\nBAZ=FOO";
+        $example  = "FOO=BAR\nBAZ=FOO";
+
+        file_put_contents($root->url() . '/.env.example', $example);
+        file_put_contents($root->url() . '/.env', $env);
+
+        $this->app->setBasePath($root->url());
+
+        // Act
+        Artisan::call('env:sync', [
+            '--no-interaction' => true,
+            '--reverse' => true,
+        ]);
+
+        // Assert
+        $expected = "FOO=BAR\nBAZ=FOO\nBAR=BAZ";
+        $this->assertEquals($expected, file_get_contents($root->url() . '/.env.example'));
+    }
 }
