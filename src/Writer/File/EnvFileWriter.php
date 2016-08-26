@@ -21,7 +21,7 @@ class EnvFileWriter implements WriterInterface
         $lastChar = substr(file_get_contents($resource), -1);
 
         $prefix = "";
-        if ($lastChar != "\n" && $lastChar != "\r") {
+        if ($lastChar != "\n" && $lastChar != "\r" && strlen($lastChar) == 1) {
             $prefix = PHP_EOL;
         }
 
