@@ -38,6 +38,7 @@ class EnvSyncServiceProvider extends ServiceProvider
 
         // artisan command
         $this->commands(Console\SyncCommand::class);
+        $this->commands(Console\CheckCommand::class);
     }
 
     public function provides()
