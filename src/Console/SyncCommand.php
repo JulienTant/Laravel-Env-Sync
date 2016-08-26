@@ -7,8 +7,8 @@
 
 namespace Jtant\LaravelEnvSync\Console;
 
-use Jtant\LaravelEnvSync\SyncService;
 use Illuminate\Console\Command;
+use Jtant\LaravelEnvSync\SyncService;
 use Jtant\LaravelEnvSync\Writer\WriterInterface;
 
 class SyncCommand extends Command
@@ -30,10 +30,12 @@ class SyncCommand extends Command
      * @var string
      */
     protected $description = 'Synchronise the .env & .env.example files';
+    
     /**
      * @var SyncService
      */
     private $sync;
+    
     /**
      * @var WriterInterface
      */
@@ -71,8 +73,9 @@ class SyncCommand extends Command
         $diffs = $this->sync->getDiff($first, $second);
 
         foreach ($diffs as $key => $diff) {
-            $question = sprintf("'%s' is not present into your %s file. It's default value is '%s'. Would you like to add it ? [y=yes/n=no/c=change default value]", $key, basename($second), $diff);
+            $question = sprintf("'%s' is not present into your %s file. Its default value is '%s'. Would you like to add it ? [y=yes/n=no/c=change default value]", $key, basename($second), $diff);
             $action = strtolower(trim($this->ask($question, self::YES)));
+            
             if ($action == self::NO) {
                 continue;
             }
