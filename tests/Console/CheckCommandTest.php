@@ -13,7 +13,7 @@ use Jtant\LaravelEnvSync\EnvSyncServiceProvider;
 use Orchestra\Testbench\TestCase;
 use org\bovigo\vfs\vfsStream;
 
-class SyncCommandTest extends TestCase
+class CheckCommandTest extends TestCase
 {
     protected function getPackageProviders($app)
     {
@@ -21,7 +21,28 @@ class SyncCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_should_fill_the_env_file_from_env_example()
+    public function it_should_retun_0_when_keys_are_in_both_files()
+    {
+        // Arrange
+        $root = vfsStream::setup();
+        $example = "FOO=BAR\nBAR=BAZ\nBAZ=FOO";
+        $env = "BAR=BAZ\nFOO=BAR\nBAZ=FOO";
+
+        file_put_contents($root->url() . '/.env.example', $example);
+        file_put_contents($root->url() . '/.env', $env);
+
+        $this->app->setBasePath($root->url());
+
+        // Act
+        $returnCode = Artisan::call('env:check');
+
+        // Assert
+        $this->assertSame(0, (int)$returnCode);
+    }
+
+
+    /** @test */
+    public function it_should_retun_1_when_files_are_different()
     {
         // Arrange
         $root = vfsStream::setup();
@@ -34,12 +55,9 @@ class SyncCommandTest extends TestCase
         $this->app->setBasePath($root->url());
 
         // Act
-        Artisan::call('env:sync', [
-            '--no-interaction' => true,
-        ]);
+        $returnCode = Artisan::call('env:check');
 
         // Assert
-        $expected = "FOO=BAR\nBAZ=FOO\nBAR=BAZ";
-        $this->assertEquals($expected, file_get_contents($root->url() . '/.env'));
+        $this->assertSame(1, (int)$returnCode);
     }
 }
