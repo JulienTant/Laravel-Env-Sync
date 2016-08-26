@@ -7,9 +7,8 @@
 
 namespace Jtant\LaravelEnvSync\Console;
 
-use Jtant\LaravelEnvSync\SyncService;
 use Illuminate\Console\Command;
-use Jtant\LaravelEnvSync\Writer\WriterInterface;
+use Jtant\LaravelEnvSync\SyncService;
 
 class CheckCommand extends Command
 {
