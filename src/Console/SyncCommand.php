@@ -74,7 +74,11 @@ class SyncCommand extends Command
 
         foreach ($diffs as $key => $diff) {
             $question = sprintf("'%s' is not present into your %s file. Its default value is '%s'. Would you like to add it ? [y=yes/n=no/c=change default value]", $key, basename($second), $diff);
-            $action = strtolower(trim($this->ask($question, self::YES)));
+            $action = $this->choice($question, [
+                self::YES    => 'Copy the default value',
+                self::CHANGE => 'Change the default value',
+                self::NO     => 'Skip'
+            ], self::YES);
             
             if ($action == self::NO) {
                 continue;
