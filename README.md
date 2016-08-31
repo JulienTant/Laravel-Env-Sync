@@ -4,7 +4,9 @@
 
 # Laravel Env Sync
 
-Keep your .env in sync with your .env.example. It reads the .env.example file and propose you to fill your .env accordingly
+Keep your .env in sync with your .env.example or vice versa.
+
+It reads the .env.example file and makes suggestions to fill your .env accordingly. 
 
 ## Installation via Composer
 
@@ -14,19 +16,19 @@ Start by requiring the package with composer
 composer require jtant/laravel-env-sync
 ```
 
-Then add the `\Jtant\LaravelEnvSync\EnvSyncServiceProvider::class` service provider to your `config/app.php` file, and that's it
+Then add the `Jtant\LaravelEnvSync\EnvSyncServiceProvider::class` service provider to your `config/app.php` file, and that's it
 
 ## Usage
 
 ### Sync your envs files
 
-You can sync your fill your .env file from the .env.example by using the `php artisan env:sync` command.
+You can populate your .env file from the .env.example by using the `php artisan env:sync` command.
 
-The command will tell you if there's anything not in sync between your files and will propose you to add values into the .env file.
+The command will tell you if there's anything not in sync between your files and will propose values to add into the .env file.
 
 You can launch the command with the option `--reverse` to fill the .env.example file from the .env file
 
-If you use the `--no-interaction` flag, the command will copy all new keys with their default values
+If you use the `--no-interaction` flag, the command will copy all new keys with their default values.
 
 ### Check for diff in your envs files
 
@@ -40,4 +42,4 @@ Again, you can launch the command with the option `--reverse`
 
 You can show a table that compares the content of your env files by using the `php artisan env:diff` command.
 
-The command will print a table that compare the content of both .env and .env.example files, and will highlight the missing keys
+The command will print a table that compares the content of both .env and .env.example files, and will highlight the missing keys.
