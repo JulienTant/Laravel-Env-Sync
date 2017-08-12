@@ -11,7 +11,6 @@ namespace Jtant\LaravelEnvSync\Tests\Writer\File;
 use Jtant\LaravelEnvSync\Writer\File\EnvFileWriter;
 use Jtant\LaravelEnvSync\Writer\WriterInterface;
 use org\bovigo\vfs\vfsStream;
-use VirtualFileSystem\FileSystem;
 
 class EnvFileWriterTest extends \PHPUnit_Framework_TestCase
 {
