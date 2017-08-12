@@ -59,7 +59,7 @@ class EnvFileWriterTest extends \PHPUnit_Framework_TestCase
         file_put_contents($filePath, implode(PHP_EOL, $lines));
 
         // Act
-        $this->writer->append($filePath, 'phpunit', 'rocks');
+        $this->writer->append($filePath, 'phpunit', 'rocks hard');
 
         // Assert
         $lines = file($filePath);
@@ -67,7 +67,7 @@ class EnvFileWriterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals([
             "test=foo\n",
             "foo=baz\n",
-            "phpunit=rocks"
+            "phpunit=\"rocks hard\""
         ], $lines);
     }
 }
