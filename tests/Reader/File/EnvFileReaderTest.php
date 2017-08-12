@@ -60,7 +60,7 @@ TAG
     /** @test */
     public function it_should_throw_exception_when_no_file_passed()
     {
-        $this->expectException(FileRequired::class);
+        $this->setExpectedException(FileRequired::class);
 
         // Act
         $this->reader->read();
