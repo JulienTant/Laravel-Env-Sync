@@ -39,16 +39,6 @@ class EnvFileWriterTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_should_append_content_to_file()
     {
-        app()->instance(\Illuminate\Contracts\Debug\ExceptionHandler::class, new class extends \Illuminate\Foundation\Exceptions\Handler {
-            public function __construct() {}
-            public function report(\Exception $e) {}
-            public function render($request, \Exception $e)
-            {
-                throw $e;
-            }
-        });
-
-
         // Arrange
         $filePath = $this->fs->url() . '/.env';
 
