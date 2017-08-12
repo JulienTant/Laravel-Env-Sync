@@ -25,6 +25,10 @@ class EnvFileWriter implements WriterInterface
             $prefix = PHP_EOL;
         }
 
+        if (strpos($value, ' ') !== false && strpos($value, '"') === false) {
+            $value = '"' . $value . '"';
+        }
+
         file_put_contents($resource, $prefix . $key . '=' . $value, FILE_APPEND);
     }
 }
