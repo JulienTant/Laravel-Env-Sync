@@ -7,7 +7,6 @@
 
 namespace Jtant\LaravelEnvSync;
 
-use Illuminate\Foundation\Exceptions\Handler;
 use Jtant\LaravelEnvSync\Reader\ReaderInterface;
 use org\bovigo\vfs\vfsStream;
 
