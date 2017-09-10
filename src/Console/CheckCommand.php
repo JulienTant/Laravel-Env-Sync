@@ -7,17 +7,16 @@
 
 namespace Jtant\LaravelEnvSync\Console;
 
-use Illuminate\Console\Command;
 use Jtant\LaravelEnvSync\SyncService;
 
-class CheckCommand extends Command
+class CheckCommand extends BaseCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'env:check {--reverse}';
+    protected $signature = 'env:check {--src=} {--dest=} {--reverse}';
 
     /**
      * The console command description.
@@ -50,24 +49,23 @@ class CheckCommand extends Command
      */
     public function handle()
     {
-        $first = base_path('.env.example');
-        $second = base_path('.env');
+        list($src, $dest) = $this->getSrcAndDest();
 
         if ($this->option('reverse')) {
-            $switch = $first;
-            $first = $second;
-            $second = $switch;
+            $switch = $src;
+            $src = $dest;
+            $dest = $switch;
             unset($switch);
         }
 
-        $diffs = $this->sync->getDiff($first, $second);
+        $diffs = $this->sync->getDiff($src, $dest);
 
         if (count($diffs) === 0) {
-            $this->info(sprintf("Your %s file is already in sync with %s", basename($second), basename($first)));
+            $this->info(sprintf("Your %s file is already in sync with %s", basename($dest), basename($src)));
             return 0;
         }
 
-        $this->info(sprintf("The following variables are not present in your %s file : ", basename($second)));
+        $this->info(sprintf("The following variables are not present in your %s file : ", basename($dest)));
         foreach ($diffs as $key => $diff) {
             $this->info(sprintf("\t- %s = %s", $key, $diff));
         }

@@ -11,14 +11,14 @@ use Illuminate\Console\Command;
 use Jtant\LaravelEnvSync\Reader\ReaderInterface;
 use Jtant\LaravelEnvSync\SyncService;
 
-class DiffCommand extends Command
+class DiffCommand extends BaseCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'env:diff';
+    protected $signature = 'env:diff {--src=} {--dest=}';
 
     /**
      * The console command description.
@@ -51,16 +51,15 @@ class DiffCommand extends Command
      */
     public function handle()
     {
-        $env = base_path('.env');
-        $example = base_path('.env.example');
+        list($src, $dest) = $this->getSrcAndDest();
 
-        $envValues = $this->reader->read($env);
-        $exampleValues = $this->reader->read($example);
+        $envValues = $this->reader->read($src);
+        $exampleValues = $this->reader->read($dest);
 
         $keys = array_unique(array_merge(array_keys($envValues), array_keys($exampleValues)));
         sort($keys);
 
-        $header = ["Key", basename($env), basename($example)];
+        $header = ["Key", basename($src), basename($dest)];
         $lines = [];
         foreach ($keys as $key) {
             $envVal = isset($envValues[$key]) ? $envValues[$key] : '<error>NOT FOUND</error>';

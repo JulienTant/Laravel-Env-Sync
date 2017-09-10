@@ -11,7 +11,7 @@ use Illuminate\Console\Command;
 use Jtant\LaravelEnvSync\SyncService;
 use Jtant\LaravelEnvSync\Writer\WriterInterface;
 
-class SyncCommand extends Command
+class SyncCommand extends BaseCommand
 {
     const YES = 'y';
     const NO = 'n';
@@ -22,7 +22,7 @@ class SyncCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'env:sync {--reverse}';
+    protected $signature = 'env:sync {--reverse} {--src=} {--dest=}';
 
     /**
      * The console command description.
@@ -60,13 +60,13 @@ class SyncCommand extends Command
      */
     public function handle()
     {
-        $first = base_path('.env.example');
-        $second = base_path('.env');
+        list($src, $dest) = $this->getSrcAndDest();
+
 
         if ($this->option('reverse')) {
-            $switch = $first;
-            $first = $second;
-            $second = $switch;
+            $switch = $src;
+            $src = $dest;
+            $dest = $switch;
             unset($switch);
         }
 
@@ -76,16 +76,16 @@ class SyncCommand extends Command
         }
 
 
-        $diffs = $this->sync->getDiff($first, $second);
+        $diffs = $this->sync->getDiff($src, $dest);
 
         foreach ($diffs as $key => $diff) {
             $action = self::YES;
             if (!$forceCopy) {
-                $question = sprintf("'%s' is not present into your %s file. Its default value is '%s'. Would you like to add it ?", $key, basename($second), $diff);
+                $question = sprintf("'%s' is not present into your %s file. Its default value is '%s'. Would you like to add it ?", $key, basename($dest), $diff);
                 $action = $this->choice($question, [
-                    self::YES    => 'Copy the default value',
+                    self::YES => 'Copy the default value',
                     self::CHANGE => 'Change the default value',
-                    self::NO     => 'Skip'
+                    self::NO => 'Skip'
                 ], self::YES);
             }
 
@@ -94,12 +94,14 @@ class SyncCommand extends Command
             }
 
             if ($action == self::CHANGE) {
-                $diff = $this->output->ask(sprintf("Please choose a value for '%s' :", $key, $diff), null, function($value) {return $value;});
+                $diff = $this->output->ask(sprintf("Please choose a value for '%s' :", $key, $diff), null, function ($value) {
+                    return $value;
+                });
             }
 
-            $this->writer->append($second, $key, $diff);
+            $this->writer->append($dest, $key, $diff);
         }
 
-        $this->info($second . ' is now synced with ' . $first);
+        $this->info($dest . ' is now synced with ' . $src);
     }
 }
