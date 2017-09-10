@@ -53,13 +53,13 @@ class DiffCommand extends BaseCommand
     {
         list($src, $dest) = $this->getSrcAndDest();
 
-        $envValues = $this->reader->read($src);
-        $exampleValues = $this->reader->read($dest);
+        $envValues = $this->reader->read($dest);
+        $exampleValues = $this->reader->read($src);
 
         $keys = array_unique(array_merge(array_keys($envValues), array_keys($exampleValues)));
         sort($keys);
 
-        $header = ["Key", basename($src), basename($dest)];
+        $header = ["Key", basename($dest), basename($src)];
         $lines = [];
         foreach ($keys as $key) {
             $envVal = isset($envValues[$key]) ? $envValues[$key] : '<error>NOT FOUND</error>';

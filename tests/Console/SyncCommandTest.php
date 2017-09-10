@@ -66,4 +66,30 @@ class SyncCommandTest extends TestCase
         $expected = "FOO=BAR\nBAZ=FOO\nBAR=BAZ";
         $this->assertEquals($expected, file_get_contents($root->url() . '/.env.example'));
     }
+
+
+    /** @test */
+    public function it_should_work_when_providing_src_and_dest()
+    {
+        // Arrange
+        $root = vfsStream::setup();
+        $example = "FOO=BAR\nBAR=BAZ\nBAZ=FOO";
+        $env = "FOO=BAR\nBAZ=FOO";
+
+        file_put_contents($root->url() . '/.foo', $example);
+        file_put_contents($root->url() . '/.bar', $env);
+
+        $this->app->setBasePath($root->url());
+
+        // Act
+        Artisan::call('env:sync', [
+            '--no-interaction' => true,
+            '--src' => $root->url() .'/.foo',
+            '--dest' => $root->url() .'/.bar'
+        ]);
+
+        // Assert
+        $expected = "FOO=BAR\nBAZ=FOO\nBAR=BAZ";
+        $this->assertEquals($expected, file_get_contents($root->url() . '/.bar'));
+    }
 }
