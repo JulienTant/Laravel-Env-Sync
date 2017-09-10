@@ -16,7 +16,8 @@ Start by requiring the package with composer
 composer require jtant/laravel-env-sync
 ```
 
-Then add the `Jtant\LaravelEnvSync\EnvSyncServiceProvider::class` service provider to your `config/app.php` file, and that's it
+
+Then, if you use laravel < 5.5,  add the `Jtant\LaravelEnvSync\EnvSyncServiceProvider::class` service provider to your `config/app.php` file, and that's it
 
 ## Usage
 
