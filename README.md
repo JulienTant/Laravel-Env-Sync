@@ -29,6 +29,8 @@ The command will tell you if there's anything not in sync between your files and
 
 You can launch the command with the option `--reverse` to fill the .env.example file from the .env file
 
+You can also use `--src` and `--dest` to specify which file you want to use. You must use either both flags, or none.
+
 If you use the `--no-interaction` flag, the command will copy all new keys with their default values.
 
 ### Check for diff in your envs files
@@ -37,10 +39,12 @@ You can check if your .env is missing some variables from your .env.example by u
 
 The command simply show you which keys are not present in your .env file. This command will return 0 if your files are in sync, and 1 if they are not, so you can use this in a script
 
-Again, you can launch the command with the option `--reverse`
+Again, you can launch the command with the option `--reverse` or with `--src` and `--dest`.
 
 ### Show diff between your envs files
 
 You can show a table that compares the content of your env files by using the `php artisan env:diff` command.
 
 The command will print a table that compares the content of both .env and .env.example files, and will highlight the missing keys.
+
+You can launch the command with the options `--src` and `--dest`.
