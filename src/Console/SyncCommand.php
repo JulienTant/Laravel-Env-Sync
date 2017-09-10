@@ -30,12 +30,12 @@ class SyncCommand extends Command
      * @var string
      */
     protected $description = 'Synchronise the .env & .env.example files';
-    
+
     /**
      * @var SyncService
      */
     private $sync;
-    
+
     /**
      * @var WriterInterface
      */
@@ -81,7 +81,7 @@ class SyncCommand extends Command
         foreach ($diffs as $key => $diff) {
             $action = self::YES;
             if (!$forceCopy) {
-                $question = sprintf("'%s' is not present into your %s file. Its default value is '%s'. Would you like to add it ? [y=yes/n=no/c=change default value]", $key, basename($second), $diff);
+                $question = sprintf("'%s' is not present into your %s file. Its default value is '%s'. Would you like to add it ?", $key, basename($second), $diff);
                 $action = $this->choice($question, [
                     self::YES    => 'Copy the default value',
                     self::CHANGE => 'Change the default value',
@@ -94,7 +94,7 @@ class SyncCommand extends Command
             }
 
             if ($action == self::CHANGE) {
-                $diff = $this->ask(sprintf("Please choose a value for '%s' :", $key, $diff));
+                $diff = $this->output->ask(sprintf("Please choose a value for '%s' :", $key, $diff), null, function($value) {return $value;});
             }
 
             $this->writer->append($second, $key, $diff);
