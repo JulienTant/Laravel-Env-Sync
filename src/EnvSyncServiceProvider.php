@@ -22,7 +22,9 @@ class EnvSyncServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->publishes([
+            __DIR__ . '/../config/env-sync.php' => config_path('env-sync.php'),
+        ]);
     }
 
     /**
@@ -32,6 +34,8 @@ class EnvSyncServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__ . '/../config/env-sync.php', 'env-sync');
+
         // bindings
         $this->app->bind(ReaderInterface::class, EnvFileReader::class);
         $this->app->bind(WriterInterface::class, EnvFileWriter::class);
@@ -49,6 +53,4 @@ class EnvSyncServiceProvider extends ServiceProvider
             WriterInterface::class,
         ];
     }
-
-
 }

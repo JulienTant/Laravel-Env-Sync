@@ -7,7 +7,10 @@
 
 namespace Jtant\LaravelEnvSync\Console;
 
+use Illuminate\Support\Facades\Notification;
 use Jtant\LaravelEnvSync\SyncService;
+use Jtant\LaravelEnvSync\Notifications\SlackChannel;
+use Jtant\LaravelEnvSync\Notifications\MissingEnvVariables;
 
 class CheckCommand extends BaseCommand
 {
@@ -16,7 +19,7 @@ class CheckCommand extends BaseCommand
      *
      * @var string
      */
-    protected $signature = 'env:check {--src=} {--dest=} {--reverse}';
+    protected $signature = 'env:check {--src=} {--dest=} {--reverse} {--notifySlack}';
 
     /**
      * The console command description.
@@ -71,6 +74,10 @@ class CheckCommand extends BaseCommand
         }
 
         $this->info(sprintf("You can use `php artisan env:sync%s` to synchronise them", $this->option('reverse') ? ' --reverse' : ''));
+
+        if ($this->option('notifySlack')) {
+            Notification::send(new SlackChannel, new MissingEnvVariables($diffs));
+        }
 
         return 1;
     }
