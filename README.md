@@ -6,7 +6,7 @@
 
 Keep your .env in sync with your .env.example or vice versa.
 
-It reads the .env.example file and makes suggestions to fill your .env accordingly. 
+It reads the .env.example file and makes suggestions to fill your .env accordingly.
 
 ## Installation via Composer
 
@@ -37,9 +37,11 @@ If you use the `--no-interaction` flag, the command will copy all new keys with 
 
 You can check if your .env is missing some variables from your .env.example by using the `php artisan env:check` command.
 
-The command simply show you which keys are not present in your .env file. This command will return 0 if your files are in sync, and 1 if they are not, so you can use this in a script
+The command simply show you which keys are not present in your .env file. This command will return 0 if your files are in sync, and 1 if they are not, so you can use this in a script.
 
 Again, you can launch the command with the option `--reverse` or with `--src` and `--dest`.
+
+If you want to use the command after deployment to check, if any `.env` variables are missing, you can pass the `--notifySlack` flag. In case you are missing some variable message will be sent to slack using `ENV_SYNC_SLACK_URL`. You can also customize the channel using `ENV_SYNC_SLACK_CHANNEL` or you can publish all the configs with `php artisan vendor:publish` and customize them as you want.
 
 ### Show diff between your envs files
 
