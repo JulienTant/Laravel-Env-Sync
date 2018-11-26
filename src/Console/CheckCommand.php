@@ -5,7 +5,7 @@
  * @author Julien Tant - Craftyx <julien@craftyx.fr>
  */
 
-namespace Jtant\LaravelEnvSync\Console;
+namespace Magic42\LaravelEnvSync\Console;
 
 use Jtant\LaravelEnvSync\SyncService;
 

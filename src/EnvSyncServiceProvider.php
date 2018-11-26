@@ -5,7 +5,7 @@
  * @author Julien Tant - Craftyx <julien@craftyx.fr>
  */
 
-namespace Jtant\LaravelEnvSync;
+namespace Magic42\LaravelEnvSync;
 
 use Illuminate\Support\ServiceProvider;
 use Jtant\LaravelEnvSync\Reader\File\EnvFileReader;

@@ -5,7 +5,7 @@
  * @author Julien Tant - Craftyx <julien@craftyx.fr>
  */
 
-namespace Jtant\LaravelEnvSync;
+namespace Magic42\LaravelEnvSync;
 
 use Jtant\LaravelEnvSync\Reader\ReaderInterface;
 use org\bovigo\vfs\vfsStream;

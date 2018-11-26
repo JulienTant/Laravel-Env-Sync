@@ -5,7 +5,7 @@
  * @author Julien Tant - Craftyx <julien@craftyx.fr>
  */
 
-namespace Jtant\LaravelEnvSync\Tests\Writer\File;
+namespace Magic42\LaravelEnvSync\Tests\Writer\File;
 
 
 use Jtant\LaravelEnvSync\Writer\File\EnvFileWriter;

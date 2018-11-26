@@ -5,7 +5,7 @@
  * @author Julien Tant - Craftyx <julien@craftyx.fr>
  */
 
-namespace Jtant\LaravelEnvSync\Tests\Console;
+namespace Magic42\LaravelEnvSync\Tests\Console;
 
 
 use Artisan;

@@ -5,7 +5,7 @@
  * @author Julien Tant - Craftyx <julien@craftyx.fr>
  */
 
-namespace Jtant\LaravelEnvSync\Reader;
+namespace Magic42\LaravelEnvSync\Reader;
 
 
 interface ReaderInterface

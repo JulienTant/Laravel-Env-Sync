@@ -5,7 +5,7 @@
  * @author Julien Tant - Craftyx <julien@craftyx.fr>
  */
 
-namespace Jtant\LaravelEnvSync\Reader\File;
+namespace Magic42\LaravelEnvSync\Reader\File;
 
 use Jtant\LaravelEnvSync\Reader\ReaderInterface;
 

@@ -5,7 +5,7 @@
  * @author Julien Tant - Craftyx <julien@craftyx.fr>
  */
 
-namespace Jtant\LaravelEnvSync\Writer\File;
+namespace Magic42\LaravelEnvSync\Writer\File;
 
 use Jtant\LaravelEnvSync\Writer\WriterInterface;
 

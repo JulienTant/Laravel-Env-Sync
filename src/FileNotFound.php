@@ -5,6 +5,6 @@
  * @author Julien Tant - Craftyx <julien@craftyx.fr>
  */
 
-namespace Jtant\LaravelEnvSync;
+namespace Magic42\LaravelEnvSync;
 
 class FileNotFound extends \Exception{}

@@ -5,7 +5,7 @@
  * @author Julien Tant - Craftyx <julien@craftyx.fr>
  */
 
-namespace Jtant\LaravelEnvSync\Reader\File;
+namespace Magic42\LaravelEnvSync\Reader\File;
 
 use Dotenv\Loader as OriginalLoader;
 

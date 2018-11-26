@@ -5,7 +5,7 @@
  * @author Julien Tant - Craftyx <julien@craftyx.fr>
  */
 
-namespace Jtant\LaravelEnvSync\Console;
+namespace Magic42\LaravelEnvSync\Console;
 
 use Illuminate\Console\Command;
 use Jtant\LaravelEnvSync\Reader\ReaderInterface;
