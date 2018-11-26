@@ -2,7 +2,7 @@
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/JulienTant/Laravel-Env-Sync.svg?maxAge=3600)](https://scrutinizer-ci.com/g/JulienTant/Laravel-Env-Sync/?branch=master)
 [![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/JulienTant/Laravel-Env-Sync.svg?maxAge=3600)](https://scrutinizer-ci.com/g/JulienTant/Laravel-Env-Sync/?branch=master)
 
-# Laravel Env Sync
+# Lumen Env Sync
 
 Keep your .env in sync with your .env.example or vice versa.
 
@@ -13,7 +13,7 @@ It reads the .env.example file and makes suggestions to fill your .env according
 Start by requiring the package with composer
 
 ```
-composer require jtant/laravel-env-sync
+composer require magic42/Lumen-Env-Sync
 ```
 
 
