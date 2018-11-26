@@ -1,5 +1,5 @@
 {
-  "name": "jtant/laravel-env-sync",
+  "name": "magic42/lumen-env-sync",
   "description": "A package that makes sure that your .env file is in sync with your .env.example",
   "type": "library",
   "autoload": {
