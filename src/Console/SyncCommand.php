@@ -64,10 +64,7 @@ class SyncCommand extends BaseCommand
 
 
         if ($this->option('reverse')) {
-            $switch = $src;
-            $src = $dest;
-            $dest = $switch;
-            unset($switch);
+            list($src, $dest) = [$dest, $src];
         }
 
         $forceCopy = $this->option('no-interaction');
