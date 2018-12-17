@@ -52,10 +52,7 @@ class CheckCommand extends BaseCommand
         list($src, $dest) = $this->getSrcAndDest();
 
         if ($this->option('reverse')) {
-            $switch = $src;
-            $src = $dest;
-            $dest = $switch;
-            unset($switch);
+            list($src, $dest) = [$dest, $src];
         }
 
         $diffs = $this->sync->getDiff($src, $dest);
