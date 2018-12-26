@@ -15,7 +15,8 @@
   "require": {
     "php": ">=7.0",
     "vlucas/phpdotenv": "~2.2",
-    "laravel/framework": "5.*"
+    "illuminate/console": "5.*",
+    "illuminate/support": "5.*"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.7",
