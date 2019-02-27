@@ -12,9 +12,10 @@ use Jtant\LaravelEnvSync\Reader\File\EnvFileReader;
 use Jtant\LaravelEnvSync\Reader\File\FileRequired;
 use Jtant\LaravelEnvSync\Reader\ReaderInterface;
 use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\TestCase;
 use VirtualFileSystem\FileSystem;
 
-class EnvFileReaderTest extends \PHPUnit_Framework_TestCase
+class EnvFileReaderTest extends TestCase
 {
     /**
      * @var \org\bovigo\vfs\vfsStreamDirectory
@@ -25,7 +26,7 @@ class EnvFileReaderTest extends \PHPUnit_Framework_TestCase
      */
     private $reader;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->reader = new EnvFileReader();
         $this->fs = vfsStream::setup("read_env");
@@ -60,7 +61,7 @@ TAG
     /** @test */
     public function it_should_throw_exception_when_no_file_passed()
     {
-        $this->setExpectedException(FileRequired::class);
+        $this->expectException(FileRequired::class);
 
         // Act
         $this->reader->read();
