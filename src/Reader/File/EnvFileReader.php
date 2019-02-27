@@ -7,6 +7,7 @@
 
 namespace Jtant\LaravelEnvSync\Reader\File;
 
+use Dotenv\Environment\DotenvFactory;
 use Jtant\LaravelEnvSync\Reader\ReaderInterface;
 
 class EnvFileReader implements ReaderInterface
@@ -25,6 +26,7 @@ class EnvFileReader implements ReaderInterface
         if ($resource === null) {
             throw new FileRequired();
         }
-        return (new Loader($resource))->load();
+
+        return (new \Dotenv\Loader([$resource], new DotenvFactory(), true))->load();
     }
 }
