@@ -41,6 +41,8 @@ The command simply show you which keys are not present in your .env file. This c
 
 Again, you can launch the command with the option `--reverse` or with `--src` and `--dest`.
 
+The command will also dispatch event `Jtant\LaravelEnvSync\Events\MissingEnvVars`, which will contain the missing env variables, which could be used in automatic deployments. Event is only fired when there are missing env variables.
+
 ### Show diff between your envs files
 
 You can show a table that compares the content of your env files by using the `php artisan env:diff` command.

@@ -7,6 +7,7 @@
 
 namespace Jtant\LaravelEnvSync\Console;
 
+use Jtant\LaravelEnvSync\Events\MissingEnvVars;
 use Jtant\LaravelEnvSync\SyncService;
 
 class CheckCommand extends BaseCommand
@@ -61,6 +62,8 @@ class CheckCommand extends BaseCommand
             $this->info(sprintf("Your %s file is already in sync with %s", basename($dest), basename($src)));
             return 0;
         }
+
+        MissingEnvVars::dispatch($diffs);
 
         $this->info(sprintf("The following variables are not present in your %s file : ", basename($dest)));
         foreach ($diffs as $key => $diff) {
