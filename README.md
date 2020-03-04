@@ -1,4 +1,4 @@
-[![Travis](https://img.shields.io/travis/JulienTant/Laravel-Env-Sync.svg?maxAge=3600)](https://travis-ci.org/JulienTant/Laravel-Env-Sync)
+[![Tests](https://github.com/JulienTant/Laravel-Env-Sync/workflows/Tests/badge.svg?branch=master&event=push)](https://github.com/JulienTant/Laravel-Env-Sync/actions?query=branch%3Amaster)
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/JulienTant/Laravel-Env-Sync.svg?maxAge=3600)](https://scrutinizer-ci.com/g/JulienTant/Laravel-Env-Sync/?branch=master)
 [![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/JulienTant/Laravel-Env-Sync.svg?maxAge=3600)](https://scrutinizer-ci.com/g/JulienTant/Laravel-Env-Sync/?branch=master)
 
