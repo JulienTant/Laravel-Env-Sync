@@ -35,7 +35,7 @@ class DiffCommandTest extends TestCase
         $this->app->setBasePath($root->url());
 
         // Act
-        Artisan::call('env:diff', []);
+        $returnCode = Artisan::call('env:diff', []);
 
         // Assert
 
@@ -51,5 +51,6 @@ class DiffCommandTest extends TestCase
 TAG;
 
         $this->assertEquals($expected, Artisan::output());
+        $this->assertSame(1, (int)$returnCode);
     }
 }

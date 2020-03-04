@@ -32,6 +32,11 @@ class DiffCommand extends BaseCommand
      */
     private $reader;
 
+    /**
+     * @var int
+     */
+    private $returnCode = 0;
+
 
     /**
      * Create a new command instance.
@@ -62,11 +67,20 @@ class DiffCommand extends BaseCommand
         $header = ["Key", basename($dest), basename($src)];
         $lines = [];
         foreach ($keys as $key) {
-            $envVal = isset($envValues[$key]) ? $envValues[$key] : '<error>NOT FOUND</error>';
-            $exampleVal = isset($exampleValues[$key]) ? $exampleValues[$key] : '<error>NOT FOUND</error>';
+            $envVal = isset($envValues[$key]) ? $envValues[$key] : $this->errorText();
+            $exampleVal = isset($exampleValues[$key]) ? $exampleValues[$key] : $this->errorText();
             $lines[] = [$key, $envVal, $exampleVal];
         }
 
         $this->table($header, $lines);
+
+        return $this->returnCode;
+    }
+
+    private function errorText()
+    {
+        $this->returnCode = 1;
+
+        return '<error>NOT FOUND</error>';
     }
 }
